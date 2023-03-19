@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "sliding-puzzle-solver"
+version = "0.1.0"
+description = ""
+authors = ["akskokki <akseli.kokki@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+invoke = "^2.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
