@@ -9,14 +9,14 @@ class GameLoop:
         self.clock = clock
 
         self.running = True
-    
+
     def start(self):
         while self.running:
             self._handle_events()
             self.board.update()
             self.renderer.render()
             self.clock.tick(60)
-    
+
     def _handle_events(self):
         for event in self.event_queue.get():
             if event.type == pygame.QUIT:

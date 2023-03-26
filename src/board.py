@@ -14,7 +14,7 @@ class Board:
         self.size = size
 
         self._create_level()
-    
+
     def update(self):
         self.tiles.update()
 
@@ -22,7 +22,7 @@ class Board:
         for tile in self.tiles:
             if tile.rect.collidepoint(pos):
                 tile.move()
-    
+
     def scramble(self):
         tile = self.tiles_grid[3][2]
         for i in range(1000):
@@ -42,7 +42,7 @@ class Board:
                 self.tiles.add(tile)
                 tiles_grid_row.append(tile)
             self.tiles_grid.append(tiles_grid_row)
-        
+
         for y in range(self.size):
             for x in range(self.size):
                 tile = self.tiles_grid[y][x]
