@@ -14,7 +14,6 @@ class Board:
         self.size = size
 
         self._create_level()
-        self.scramble()
     
     def update(self):
         self.tiles.update()
@@ -29,7 +28,6 @@ class Board:
         for i in range(1000):
             tile.move()
             tile = random.choice(tile.neighbours)
-
 
     def _create_level(self):
         for y in range(self.size):
@@ -53,5 +51,4 @@ class Board:
                 if x > 0:
                     tile.add_neighbour(self.tiles_grid[y][x-1])
 
-        
         self.all_sprites.add(self.tiles)

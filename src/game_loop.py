@@ -24,3 +24,6 @@ class GameLoop:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
                     self.board.click(event.pos)
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    self.board.scramble()
