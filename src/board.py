@@ -1,6 +1,6 @@
-from sprites.tile import Tile
-import pygame
 import random
+import pygame
+from sprites.tile import Tile
 
 
 class Board:
@@ -25,7 +25,7 @@ class Board:
 
     def scramble(self):
         tile = self.tiles_grid[3][2]
-        for i in range(1000):
+        for _ in range(1000):
             tile.move()
             tile = random.choice(tile.neighbours)
 
