@@ -1,4 +1,13 @@
 class IDAStar:
+    """ Implementation of the IDA* solving algorithm with
+        Manhattan distance as the heuristic being used
+
+    Constants:
+        INFTY: Large number to emulate infinity in the algorithm
+
+    Attributes:
+        board: Board being used for game logic
+    """
     INFTY = 99999
 
     def __init__(self, board):

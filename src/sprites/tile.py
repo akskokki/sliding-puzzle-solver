@@ -3,6 +3,14 @@ from load_image import load_image
 
 
 class Tile(pygame.sprite.Sprite):
+    """ Pygame Sprite for the tiles
+    Attributes:
+        number: The current number of the tile
+        x, y: Relative coordinates on the board
+        images: List of all Tile images available
+        image: Current image being displayed
+    """
+
     def __init__(self, x, y, number):
         super().__init__()
         self.number = number

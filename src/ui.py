@@ -3,6 +3,14 @@ from sprites.tile import Tile
 
 
 class UI:
+    """ Handles the Pygame Sprites in the UI
+
+    Attributes:
+        board: Board for game logic
+        tiles: Pygame Group of tile sprites
+        tiles_grid: Tile sprites assembled in a grid
+    """
+
     def __init__(self, board):
         self.board = board
         self.tiles = pygame.sprite.Group()

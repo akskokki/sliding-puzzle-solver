@@ -3,6 +3,18 @@ from copy import deepcopy
 
 
 class Board:
+    """ Handles game logic for the board
+
+    Constants:
+        UP, LEFT, RIGHT, DOWN: Tuples that act as unit vectors
+            for board piece movement
+
+    Attributes:
+        numbers_grid: The board state in a grid
+        blank_coords: Coordinates of the blank tile
+        size: Side length of the board 
+    """
+
     UP = (-1, 0)
     LEFT = (0, -1)
     RIGHT = (0, 1)
@@ -14,7 +26,6 @@ class Board:
         self.numbers_grid = []
         self.blank_coords = (size-1, size-1)
 
-        self.cell_size = 100
         self.size = size
 
         self._create_board()

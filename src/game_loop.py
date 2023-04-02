@@ -2,6 +2,17 @@ import pygame
 
 
 class GameLoop:
+    """ Controls the game loop and user input
+
+    Attributes:
+        board: Board that handles game logic
+        ui: Pygame UI
+        renderer: Pygame renderer
+        event_queue: Pygame EventQueue
+        clock: Pygame Clock
+        running: Boolean that determines whether the game is running
+    """
+
     def __init__(self, board, ui, renderer, event_queue, clock, solver):
         self.board = board
         self.ui = ui
