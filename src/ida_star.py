@@ -25,6 +25,7 @@ class IDAStar:
             elif t == self.INFTY:
                 return None
             bound = t
+            print(f'new bound: {bound}')
 
     def search(self, path, g, bound, moves):
         node = path[-1]

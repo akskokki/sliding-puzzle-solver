@@ -43,7 +43,7 @@ class Board:
         return True
 
     def scramble(self):
-        for _ in range(1000):
+        for _ in range(100):
             dir = random.choice(self.DIRS)
             self.move(dir)
 
