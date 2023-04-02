@@ -42,13 +42,13 @@ class TestGameLoop(unittest.TestCase):
             StubEvent(pygame.MOUSEBUTTONDOWN, (250, 350)),
             StubEvent(pygame.QUIT, None)
         ]
-        self.assertEqual(self.board.tiles_grid[3][3].number, 0)
-        self.assertEqual(self.board.tiles_grid[3][2].number, 15)
+        self.assertEqual(self.board.numbers_grid[3][3].number, 0)
+        self.assertEqual(self.board.numbers_grid[3][2].number, 15)
 
         game_loop = GameLoop(
             self.board, StubRenderer(), StubEventQueue(events), StubClock()
         )
         game_loop.start()
 
-        self.assertEqual(self.board.tiles_grid[3][3].number, 15)
-        self.assertEqual(self.board.tiles_grid[3][2].number, 0)
+        self.assertEqual(self.board.numbers_grid[3][3].number, 15)
+        self.assertEqual(self.board.numbers_grid[3][2].number, 0)

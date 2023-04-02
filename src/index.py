@@ -4,6 +4,8 @@ from event_queue import EventQueue
 from renderer import Renderer
 from clock import Clock
 from game_loop import GameLoop
+from ida_star import IDAStar
+from ui import UI
 
 
 def main():
@@ -13,10 +15,12 @@ def main():
     pygame.display.set_caption('15 puzzle')
 
     board = Board(size)
+    ui = UI(board)
+    solver = IDAStar(board)
     event_queue = EventQueue()
-    renderer = Renderer(board, screen)
+    renderer = Renderer(ui, screen)
     clock = Clock()
-    game_loop = GameLoop(board, renderer, event_queue, clock)
+    game_loop = GameLoop(board, ui, renderer, event_queue, clock, solver)
 
     pygame.init()
     game_loop.start()

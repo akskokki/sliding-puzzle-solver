@@ -1,6 +1,5 @@
 import random
-import pygame
-from sprites.tile import Tile
+from copy import deepcopy
 
 
 class Board:
@@ -12,57 +11,49 @@ class Board:
     DIRS = [UP, LEFT, RIGHT, DOWN]
 
     def __init__(self, size):
-        self.tiles = pygame.sprite.Group()
-        self.tiles_grid = []
+        self.numbers_grid = []
         self.blank_coords = (size-1, size-1)
-
-        self.all_sprites = pygame.sprite.Group()
 
         self.cell_size = 100
         self.size = size
 
         self._create_board()
 
-    def update(self):
-        self.tiles.update()
-
     def move(self, dir):
-        y = self.blank_coords[0] + dir[0]
-        x = self.blank_coords[1] + dir[1]
+        blank_y = self.blank_coords[0]
+        blank_x = self.blank_coords[1]
+        y = blank_y + dir[0]
+        x = blank_x + dir[1]
         if x < 0 or x >= self.size or y < 0 or y >= self.size:
-            return
-        self.tiles_grid[y][x].move()
+            return False
+        self.numbers_grid[blank_y][blank_x] = self.numbers_grid[y][x]
+        self.numbers_grid[y][x] = 0
         self.blank_coords = (y, x)
-
-    def click(self, pos):
-        for tile in self.tiles:
-            if tile.rect.collidepoint(pos):
-                if tile.move():
-                    self.blank_coords = (tile.y, tile.x)
+        return True
 
     def scramble(self):
         for _ in range(1000):
             dir = random.choice(self.DIRS)
             self.move(dir)
 
-    def _create_board(self):
+    def check_win(self):
         for y in range(self.size):
-            tiles_grid_row = []
             for x in range(self.size):
                 number = (y * self.size + x + 1) % (self.size ** 2)
+                if self.numbers_grid[y][x] != number:
+                    return False
+        return True
 
-                tile = Tile(x, y, number)
+    def simulate_move(self, dir):
+        sim_board = deepcopy(self)
+        if sim_board.move(dir):
+            return sim_board
+        return None
 
-                self.tiles.add(tile)
-                tiles_grid_row.append(tile)
-            self.tiles_grid.append(tiles_grid_row)
-
+    def _create_board(self):
         for y in range(self.size):
+            numbers_grid_row = []
             for x in range(self.size):
-                tile = self.tiles_grid[y][x]
-                if y > 0:
-                    tile.add_neighbour(self.tiles_grid[y-1][x])
-                if x > 0:
-                    tile.add_neighbour(self.tiles_grid[y][x-1])
-
-        self.all_sprites.add(self.tiles)
+                number = (y * self.size + x + 1) % (self.size ** 2)
+                numbers_grid_row.append(number)
+            self.numbers_grid.append(numbers_grid_row)

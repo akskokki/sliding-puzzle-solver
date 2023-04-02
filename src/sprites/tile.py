@@ -16,22 +16,8 @@ class Tile(pygame.sprite.Sprite):
         self.rect.x = x * self.rect.width
         self.rect.y = y * self.rect.height
 
-        self.neighbours = []
-
     def update(self):
         self.image = self.images[self.number]
-
-    def add_neighbour(self, new_neighbour):
-        self.neighbours.append(new_neighbour)
-        new_neighbour.neighbours.append(self)
-
-    def move(self):
-        for neighbour in self.neighbours:
-            if neighbour.number == 0:
-                neighbour.number = self.number
-                self.number = 0
-                return True
-        return False
 
     def _load_images(self):
         images = {}

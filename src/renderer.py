@@ -2,10 +2,10 @@ import pygame
 
 
 class Renderer:
-    def __init__(self, board, display):
-        self.board = board
+    def __init__(self, ui, display):
+        self.ui = ui
         self.display = display
 
     def render(self):
-        self.board.all_sprites.draw(self.display)
+        self.ui.tiles.draw(self.display)
         pygame.display.flip()
