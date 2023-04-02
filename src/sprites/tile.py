@@ -6,13 +6,15 @@ class Tile(pygame.sprite.Sprite):
     def __init__(self, x, y, number):
         super().__init__()
         self.number = number
+        self.x = x
+        self.y = y
 
         self.images = self._load_images()
 
         self.image = self.images[number]
         self.rect = self.image.get_rect()
-        self.rect.x = x
-        self.rect.y = y
+        self.rect.x = x * self.rect.width
+        self.rect.y = y * self.rect.height
 
         self.neighbours = []
 
@@ -28,7 +30,8 @@ class Tile(pygame.sprite.Sprite):
             if neighbour.number == 0:
                 neighbour.number = self.number
                 self.number = 0
-                break
+                return True
+        return False
 
     def _load_images(self):
         images = {}

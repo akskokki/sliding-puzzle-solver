@@ -27,3 +27,11 @@ class GameLoop:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     self.board.scramble()
+                if event.key == pygame.K_UP:
+                    self.board.move(self.board.UP)
+                if event.key == pygame.K_LEFT:
+                    self.board.move(self.board.LEFT)
+                if event.key == pygame.K_RIGHT:
+                    self.board.move(self.board.RIGHT)
+                if event.key == pygame.K_DOWN:
+                    self.board.move(self.board.DOWN)
