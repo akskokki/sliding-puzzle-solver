@@ -1,5 +1,5 @@
 import pygame
-from load_image import load_image
+from utilities.load_image import load_image
 
 
 class Tile(pygame.sprite.Sprite):

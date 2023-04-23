@@ -1,8 +1,8 @@
 import pygame
 from board import Board
-from event_queue import EventQueue
-from renderer import Renderer
-from clock import Clock
+from utilities.event_queue import EventQueue
+from utilities.renderer import Renderer
+from utilities.clock import Clock
 from game_loop import GameLoop
 from ida_star import IDAStar
 from ui import UI
