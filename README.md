@@ -6,6 +6,8 @@ Data structures and algorithms student project
 
 [Implementation document](https://github.com/akskokki/sliding-puzzle-solver/blob/main/docs/implementation.md)
 
+[Testing document](https://github.com/akskokki/sliding-puzzle-solver/blob/main/docs/testing.md)
+
 #### Weekly progress reports
 [Week 1](https://github.com/akskokki/sliding-puzzle-solver/blob/main/docs/week1.md)  
 [Week 2](https://github.com/akskokki/sliding-puzzle-solver/blob/main/docs/week2.md)  
