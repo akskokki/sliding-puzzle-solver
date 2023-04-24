@@ -24,6 +24,8 @@ class Board:
 
     def __init__(self, size):
         self.numbers_grid = []
+        self.win_state = []
+
         self.blank_coords = (size-1, size-1)
 
         self.size = size
@@ -50,8 +52,7 @@ class Board:
     def check_win(self):
         for y in range(self.size):
             for x in range(self.size):
-                number = (y * self.size + x + 1) % (self.size ** 2)
-                if self.numbers_grid[y][x] != number:
+                if self.numbers_grid[y][x] != self.win_state[y][x]:
                     return False
         return True
 
@@ -68,3 +69,4 @@ class Board:
                 number = (y * self.size + x + 1) % (self.size ** 2)
                 numbers_grid_row.append(number)
             self.numbers_grid.append(numbers_grid_row)
+            self.win_state.append(deepcopy(numbers_grid_row))
