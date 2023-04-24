@@ -1,4 +1,5 @@
 from copy import deepcopy
+from logger import Logger
 
 
 class IDAStar:
@@ -13,24 +14,27 @@ class IDAStar:
     """
     INFTY = 99999
 
-    def __init__(self, board):
+    def __init__(self, board, logger):
         self.board = board
+        self.logger = logger
 
     def run(self):
+        self.logger.reset()
         board_copy = deepcopy(self.board)
         bound = self.h_value(board_copy)
         moves = []
         while True:
+            self.logger.set_bound(bound)
             t = self.search(0, board_copy, bound, moves)
             if t is True:
-                print(f'found solution of {len(moves)} moves')
+                print(f'Found solution of {len(moves)} moves')
                 return moves
             if t == self.INFTY:
                 return None
             bound = t
-            print(f'new bound: {bound}')
 
     def search(self, g, board_copy, bound, moves):
+        self.logger.add_node()
         f = g + self.h_value(board_copy)
         if f > bound:
             return f

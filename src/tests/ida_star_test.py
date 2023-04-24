@@ -1,4 +1,5 @@
 import unittest
+from unittest.mock import Mock
 from ida_star import IDAStar
 from board import Board
 
@@ -6,7 +7,7 @@ from board import Board
 class TestIDAStar(unittest.TestCase):
     def setUp(self):
         self.board = Board(4)
-        self.ida_star = IDAStar(self.board)
+        self.ida_star = IDAStar(self.board, Mock())
 
     def test_solved_state_has_h_value_zero(self):
         numbers_grid = [

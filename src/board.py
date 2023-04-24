@@ -11,6 +11,7 @@ class Board:
 
     Attributes:
         numbers_grid: The board state in a grid
+        win_state: A grid of the win state of the board
         blank_coords: Coordinates of the blank tile
         size: Side length of the board 
     """

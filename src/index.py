@@ -6,6 +6,7 @@ from utilities.clock import Clock
 from game_loop import GameLoop
 from ida_star import IDAStar
 from ui import UI
+from logger import Logger
 
 
 def main():
@@ -16,7 +17,8 @@ def main():
 
     board = Board(size)
     ui = UI(board)
-    solver = IDAStar(board)
+    logger = Logger()
+    solver = IDAStar(board, logger)
     event_queue = EventQueue()
     renderer = Renderer(ui, screen)
     clock = Clock()
