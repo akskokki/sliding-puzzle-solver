@@ -25,7 +25,7 @@ class IDAStar:
             if t is True:
                 print(f'found solution of {len(moves)} moves')
                 return moves
-            elif t == self.INFTY:
+            if t == self.INFTY:
                 return None
             bound = t
             print(f'new bound: {bound}')
@@ -36,7 +36,7 @@ class IDAStar:
             return f
         if board_copy.check_win():
             return True
-        min = self.INFTY
+        minimum = self.INFTY
 
         for move in board_copy.DIRS:
             if len(moves) > 0 and (-move[0], -move[1]) == moves[-1]:
@@ -47,12 +47,12 @@ class IDAStar:
                 t = self.search(g + 1, board_copy, bound, moves)
                 if t is True:
                     return True
-                if t < min:
-                    min = t
+                if t < minimum:
+                    minimum = t
                 board_copy.move((-move[0], -move[1]))
                 moves.pop()
 
-        return min
+        return minimum
 
     def destination(self, number):
         x = (number - 1) % self.board.size

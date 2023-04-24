@@ -32,11 +32,11 @@ class Board:
 
         self._create_board()
 
-    def move(self, dir):
+    def move(self, direction):
         blank_y = self.blank_coords[0]
         blank_x = self.blank_coords[1]
-        y = blank_y + dir[0]
-        x = blank_x + dir[1]
+        y = blank_y + direction[0]
+        x = blank_x + direction[1]
         if x < 0 or x >= self.size or y < 0 or y >= self.size:
             return False
         self.numbers_grid[blank_y][blank_x] = self.numbers_grid[y][x]
@@ -46,8 +46,8 @@ class Board:
 
     def scramble(self):
         for _ in range(100):
-            dir = random.choice(self.DIRS)
-            self.move(dir)
+            direction = random.choice(self.DIRS)
+            self.move(direction)
 
     def check_win(self):
         for y in range(self.size):
@@ -56,9 +56,9 @@ class Board:
                     return False
         return True
 
-    def simulate_move(self, dir):
+    def simulate_move(self, direction):
         sim_board = deepcopy(self)
-        if sim_board.move(dir):
+        if sim_board.move(direction):
             return sim_board
         return None
 

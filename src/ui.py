@@ -15,7 +15,7 @@ class UI:
         self.board = board
         self.tiles = pygame.sprite.Group()
         self.tiles_grid = []
-        self.create_tiles(board)
+        self.create_tiles()
 
     def update(self):
         for tile in self.tiles:
@@ -26,7 +26,7 @@ class UI:
     #     for tile in self.tiles:
     #         if tile.rect.collidepoint(pos):
 
-    def create_tiles(self, board):
+    def create_tiles(self):
         for y in range(self.board.size):
             tiles_grid_row = []
             for x in range(self.board.size):
