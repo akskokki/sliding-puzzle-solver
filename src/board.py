@@ -56,12 +56,6 @@ class Board:
                     return False
         return True
 
-    def simulate_move(self, direction):
-        sim_board = deepcopy(self)
-        if sim_board.move(direction):
-            return sim_board
-        return None
-
     def _create_board(self):
         for y in range(self.size):
             numbers_grid_row = []

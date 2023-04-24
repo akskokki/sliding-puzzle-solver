@@ -3,6 +3,7 @@ import pygame
 
 from board import Board
 from game_loop import GameLoop
+from ui import UI
 
 
 class StubClock:
@@ -14,10 +15,9 @@ class StubClock:
 
 
 class StubEvent:
-    def __init__(self, event_type, pos):
+    def __init__(self, event_type, key):
         self.type = event_type
-        self.button = 1
-        self.pos = pos
+        self.key = key
 
 
 class StubEventQueue:
@@ -33,22 +33,44 @@ class StubRenderer:
         pass
 
 
+class StubIDAStar:
+    def __init__(self):
+        pass
+
+
 class TestGameLoop(unittest.TestCase):
     def setUp(self):
         self.board = Board(4)
 
-    def test_clicking_tile_works(self):
+    def test_moving_works(self):
         events = [
-            StubEvent(pygame.MOUSEBUTTONDOWN, (250, 350)),
+            StubEvent(pygame.KEYDOWN, pygame.K_LEFT),
             StubEvent(pygame.QUIT, None)
         ]
-        self.assertEqual(self.board.numbers_grid[3][3].number, 0)
-        self.assertEqual(self.board.numbers_grid[3][2].number, 15)
+        self.assertEqual(self.board.numbers_grid[3][3], 0)
+        self.assertEqual(self.board.numbers_grid[3][2], 15)
 
         game_loop = GameLoop(
-            self.board, StubRenderer(), StubEventQueue(events), StubClock()
+            self.board, UI(self.board), StubRenderer(
+            ), StubEventQueue(events), StubClock(), StubIDAStar()
         )
         game_loop.start()
 
-        self.assertEqual(self.board.numbers_grid[3][3].number, 15)
-        self.assertEqual(self.board.numbers_grid[3][2].number, 0)
+        self.assertEqual(self.board.numbers_grid[3][3], 15)
+        self.assertEqual(self.board.numbers_grid[3][2], 0)
+
+    # def test_clicking_tile_works(self):
+    #     events = [
+    #         StubEvent(pygame.MOUSEBUTTONDOWN, (250, 350)),
+    #         StubEvent(pygame.QUIT, None)
+    #     ]
+    #     self.assertEqual(self.board.numbers_grid[3][3].number, 0)
+    #     self.assertEqual(self.board.numbers_grid[3][2].number, 15)
+
+    #     game_loop = GameLoop(
+    #         self.board, StubRenderer(), StubEventQueue(events), StubClock()
+    #     )
+    #     game_loop.start()
+
+    #     self.assertEqual(self.board.numbers_grid[3][3].number, 15)
+    #     self.assertEqual(self.board.numbers_grid[3][2].number, 0)
