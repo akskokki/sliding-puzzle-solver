@@ -20,7 +20,7 @@ class Logger:
         self.start_time = time()
         self.previous_update_time = 0
 
-    def update(self):
+    def _update(self):
         """Prints out the current logger information up to once every 0.1 seconds
 
         Returns:
@@ -44,7 +44,7 @@ class Logger:
         Returns: Return value of update()
         """
         self.nodes += 1
-        return self.update()
+        return self._update()
 
     def set_bound(self, new_bound):
         """Sets a new bound and calls for an update
@@ -52,4 +52,4 @@ class Logger:
         Returns: Return value of update()
         """
         self.bound = new_bound
-        return self.update()
+        return self._update()

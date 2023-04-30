@@ -72,7 +72,7 @@ class IDAStar:
             False: Solver timed out
         """
         elapsed_time = self.logger.add_node()
-        if elapsed_time > self.timeout and self.timeout > 0:
+        if self.timeout > 0 and elapsed_time > self.timeout:
             return False
         f = g + self.h_value(board_copy)
         if f > bound:

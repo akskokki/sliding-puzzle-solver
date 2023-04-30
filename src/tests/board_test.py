@@ -30,3 +30,14 @@ class TestBoard(unittest.TestCase):
         self.assertEqual(True, self.board.check_win())
         self.board.move(Board.UP)
         self.assertEqual(False, self.board.check_win())
+
+    def test_set_numbers_works(self):
+        numbers_grid_correct = [
+            [1, 2, 3, 4],
+            [5, 6, 7, 8],
+            [9, 10, 0, 11],
+            [13, 14, 15, 12]
+        ]
+        self.board.set_numbers(
+            '[[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 0, 11], [13, 14, 15, 12]]')
+        self.assertEqual(numbers_grid_correct, self.board.numbers_grid)

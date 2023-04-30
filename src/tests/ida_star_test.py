@@ -1,13 +1,25 @@
 import unittest
-from unittest.mock import Mock
 from ida_star import IDAStar
 from board import Board
+
+
+class MockLogger:
+    """Mock Logger that always returns 5 seconds as elapsed time"""
+
+    def reset(self):
+        pass
+
+    def add_node(self):
+        return 5
+
+    def set_bound(self, new_bound):
+        return 5
 
 
 class TestIDAStar(unittest.TestCase):
     def setUp(self):
         self.board = Board(4)
-        self.ida_star = IDAStar(self.board, Mock())
+        self.ida_star = IDAStar(self.board, MockLogger())
 
     def test_solved_state_has_h_value_zero(self):
         numbers_grid = [
@@ -61,3 +73,18 @@ class TestIDAStar(unittest.TestCase):
 
         moves = self.ida_star.run()
         self.assertEqual(len(moves), 6)
+
+    def test_timeout_works(self):
+        numbers_grid = [
+            [1, 2, 7, 3],
+            [5, 0, 6, 4],
+            [9, 10, 11, 8],
+            [13, 14, 15, 12]
+        ]
+        self.board.numbers_grid = numbers_grid
+        self.board.blank_coords = (1, 1)
+
+        self.ida_star = IDAStar(self.board, MockLogger(), 4)
+
+        moves = self.ida_star.run()
+        self.assertEqual(moves, None)
