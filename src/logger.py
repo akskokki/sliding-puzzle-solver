@@ -11,7 +11,10 @@ class Logger:
     def __init__(self):
         """Class constructor"""
         self.update_interval = 0.1
-        self.reset()
+        self.nodes = 0
+        self.bound = 0
+        self.start_time = time()
+        self.previous_update_time = 0
 
     def reset(self):
         """Resets the logger state to zeros"""

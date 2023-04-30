@@ -1,5 +1,5 @@
-import pygame
 from copy import deepcopy
+import pygame
 
 
 class GameLoop:
