@@ -21,24 +21,35 @@ class Logger:
         self.previous_update_time = 0
 
     def update(self):
-        """Prints out the current logger information up to once every 0.1 seconds"""
+        """Prints out the current logger information up to once every 0.1 seconds
+
+        Returns:
+            elapsed_time (float): Time elapsed since starting the search
+        """
         elapsed_time = time() - self.start_time
         if self.previous_update_time == 0:
-            print('\n\n\n')
+            print('\n\n')
         elif elapsed_time - self.previous_update_time <= self.update_interval:
-            return
+            return elapsed_time
         self.previous_update_time = elapsed_time
         print("\033[1A\x1b[2K\033[1A\x1b[2K\033[1A\x1b[2K\033[1A\x1b[2K")
         print(f'Time elapsed: {round(elapsed_time, 1)}')
         print(f'Current bound: {self.bound}')
         print(f'Nodes checked: {self.nodes}')
+        return elapsed_time
 
     def add_node(self):
-        """Adds a node to the count and calls for an update"""
+        """Adds a node to the count and calls for an update
+
+        Returns: Return value of update()
+        """
         self.nodes += 1
-        self.update()
+        return self.update()
 
     def set_bound(self, new_bound):
-        """Sets a new bound and calls for an update"""
+        """Sets a new bound and calls for an update
+
+        Returns: Return value of update()
+        """
         self.bound = new_bound
-        self.update()
+        return self.update()

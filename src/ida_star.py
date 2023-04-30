@@ -1,5 +1,4 @@
 from copy import deepcopy
-from logger import Logger
 
 
 class IDAStar:
@@ -14,19 +13,22 @@ class IDAStar:
     Attributes:
         board: Board being used for game logic
         logger: Logger object to report the search progress to terminal
+        timeout: Time (seconds) until solver times out
     """
     INFTY = 99999
 
-    def __init__(self, board, logger):
+    def __init__(self, board, logger, timeout=-1):
         """
         Class constructor
 
         Args:
             board: Board object
             logger: Logger object
+            timeout: Time (seconds) until solver times out
         """
         self.board = board
         self.logger = logger
+        self.timeout = timeout
 
     def run(self):
         """
@@ -36,6 +38,7 @@ class IDAStar:
             moves (List): List of moves to reach solution
             None: Solution not found
         """
+        print(f'\nStarting configuration: {self.board.numbers_grid}')
         self.logger.reset()
         board_copy = deepcopy(self.board)
         bound = self.h_value(board_copy)
@@ -46,6 +49,9 @@ class IDAStar:
             if t is True:
                 print(f'Found solution of {len(moves)} moves')
                 return moves
+            if t is False:
+                print(f'No solution found in {self.timeout} seconds')
+                return None
             if t == self.INFTY:
                 return None
             bound = t
@@ -63,8 +69,11 @@ class IDAStar:
         Returns:
             f or minimum (int): Value of f exceeds bound
             True: Win state has been reached
+            False: Solver timed out
         """
-        self.logger.add_node()
+        elapsed_time = self.logger.add_node()
+        if elapsed_time > self.timeout and self.timeout > 0:
+            return False
         f = g + self.h_value(board_copy)
         if f > bound:
             return f
@@ -81,6 +90,8 @@ class IDAStar:
                 t = self.search(g + 1, board_copy, bound, moves)
                 if t is True:
                     return True
+                if t is False:
+                    return False
                 if t < minimum:
                     minimum = t
                 board_copy.move((-move[0], -move[1]))

@@ -71,6 +71,9 @@ class GameLoop:
                     self.board.move(self.board.RIGHT)
                 elif event.key == pygame.K_DOWN:
                     self.board.move(self.board.DOWN)
+                elif event.key == pygame.K_r:
+                    new_numbers = input("\nNew number grid to be used: ")
+                    self.board.set_numbers(new_numbers)
 
     def _handle_solver(self):
         """Handles functionality of solver button"""

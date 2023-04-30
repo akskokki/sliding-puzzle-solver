@@ -92,3 +92,16 @@ class Board:
                 numbers_grid_row.append(number)
             self.numbers_grid.append(numbers_grid_row)
             self.win_state.append(deepcopy(numbers_grid_row))
+
+    def set_numbers(self, new_numbers):
+        """
+        Sets the board numbers based on 2D List in String format
+
+        Args:
+            new_numbers: Numbers from user input
+        """
+        self.numbers_grid = eval(new_numbers)
+        for y in range(self.size):
+            for x in range(self.size):
+                if self.numbers_grid[y][x] == 0:
+                    self.blank_coords = (y, x)
