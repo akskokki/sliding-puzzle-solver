@@ -2,6 +2,8 @@
 Data structures and algorithms student project
 
 ## Documentation
+[User instructions](https://github.com/akskokki/sliding-puzzle-solver/blob/main/docs/instructions.md))
+
 [Project specification](https://github.com/akskokki/sliding-puzzle-solver/blob/main/docs/specification.md)
 
 [Implementation document](https://github.com/akskokki/sliding-puzzle-solver/blob/main/docs/implementation.md)
@@ -14,41 +16,3 @@ Data structures and algorithms student project
 [Week 3](https://github.com/akskokki/sliding-puzzle-solver/blob/main/docs/week3.md)  
 [Week 4](https://github.com/akskokki/sliding-puzzle-solver/blob/main/docs/week4.md)  
 [Week 5](https://github.com/akskokki/sliding-puzzle-solver/blob/main/docs/week5.md)
-
-## Installation
-
-1. Install dependencies with
-
-```
-poetry install
-```
-
-2. Launch the game with
-
-```
-poetry run invoke start
-```
-
-## Usage
-Arrow keys: Manual board control  
-Space: Weak scramble (100 random moves, solver can't handle much more)  
-Enter: Start solve, and after solution is found progress solve with each press
-
-## Testing
-Unit tests:
-
-```
-poetry run invoke test
-```
-
-Coverage report (found in `/htmlcov/index.html`):
-
-```
-poetry run invoke coverage-report
-```
-
-Pylint static code analysis:
-
-```
-poetry run invoke lint
-```
