@@ -3,7 +3,8 @@ from sprites.tile import Tile
 
 
 class UI:
-    """ Handles the Pygame Sprites in the UI
+    """
+    Handles the Pygame Sprites in the UI
 
     Attributes:
         board: Board for game logic
@@ -12,12 +13,19 @@ class UI:
     """
 
     def __init__(self, board):
+        """
+        Class constructor
+
+        Args:
+            board: Board object used for the current game
+        """
         self.board = board
         self.tiles = pygame.sprite.Group()
         self.tiles_grid = []
         self.create_tiles()
 
     def update(self):
+        """Performs pygame updates for all tiles"""
         for tile in self.tiles:
             tile.number = self.board.numbers_grid[tile.y][tile.x]
         self.tiles.update()
@@ -27,6 +35,7 @@ class UI:
     #         if tile.rect.collidepoint(pos):
 
     def create_tiles(self):
+        """Creates the initial tiles based on the values of the board"""
         for y in range(self.board.size):
             tiles_grid_row = []
             for x in range(self.board.size):

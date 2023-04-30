@@ -3,7 +3,8 @@ from copy import deepcopy
 
 
 class Board:
-    """ Handles game logic for the board
+    """
+    Handles game logic for the board
 
     Constants:
         UP, LEFT, RIGHT, DOWN: Tuples that act as unit vectors
@@ -24,6 +25,12 @@ class Board:
     DIRS = [UP, LEFT, RIGHT, DOWN]
 
     def __init__(self, size):
+        """
+        Class constructor
+
+        Args:
+            size: Size of puzzle grid
+        """
         self.numbers_grid = []
         self.win_state = []
 
@@ -34,6 +41,16 @@ class Board:
         self._create_board()
 
     def move(self, direction):
+        """
+        Moves the blank space in a direction if possible
+
+        Args:
+            direction: Direction constant from DIRS
+
+        Returns:
+            True: Valid movement
+            False: Invalid movement
+        """
         blank_y = self.blank_coords[0]
         blank_x = self.blank_coords[1]
         y = blank_y + direction[0]
@@ -46,11 +63,19 @@ class Board:
         return True
 
     def scramble(self):
+        """Scrambles the board by 100 moves"""
         for _ in range(100):
             direction = random.choice(self.DIRS)
             self.move(direction)
 
     def check_win(self):
+        """
+        Checks if the win state has been reached
+
+        Returns:
+            True: Game is in solved state
+            False: Game is not in solved state
+        """
         for y in range(self.size):
             for x in range(self.size):
                 if self.numbers_grid[y][x] != self.win_state[y][x]:
@@ -58,6 +83,7 @@ class Board:
         return True
 
     def _create_board(self):
+        """Creates the initial board"""
         for y in range(self.size):
             numbers_grid_row = []
             for x in range(self.size):

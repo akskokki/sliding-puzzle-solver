@@ -17,6 +17,17 @@ class GameLoop:
     """
 
     def __init__(self, board, ui, renderer, event_queue, clock, solver):
+        """
+        Class constructor
+
+        Args:
+            board: Board that handles game logic
+            ui: Pygame UI
+            renderer: Pygame renderer
+            event_queue: Pygame EventQueue
+            clock: Pygame Clock
+            solver: The IDAStar solving algorithm
+        """
         self.board = board
         self.ui = ui
         self.renderer = renderer
@@ -30,6 +41,7 @@ class GameLoop:
         self.running = True
 
     def start(self):
+        """Starts the game loop"""
         while self.running:
             self._handle_events()
             self.ui.update()
@@ -37,6 +49,7 @@ class GameLoop:
             self.clock.tick(60)
 
     def _handle_events(self):
+        """Handles pygame-events in the event queue"""
         for event in self.event_queue.get():
             if event.type == pygame.QUIT:
                 self.running = False

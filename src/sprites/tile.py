@@ -4,6 +4,7 @@ from utilities.load_image import load_image
 
 class Tile(pygame.sprite.Sprite):
     """ Pygame Sprite for the tiles
+
     Attributes:
         number: The current number of the tile
         x, y: Relative coordinates on the board
