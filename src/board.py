@@ -66,7 +66,8 @@ class Board:
         """Scrambles the board by 100 moves"""
         for _ in range(100):
             direction = random.choice(self.DIRS)
-            self.move(direction)
+            while not self.move(direction):
+                direction = random.choice(self.DIRS)
 
     def check_win(self):
         """

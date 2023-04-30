@@ -1,4 +1,5 @@
 import pygame
+from copy import deepcopy
 
 
 class GameLoop:
@@ -37,11 +38,12 @@ class GameLoop:
         self.solver = solver
         self.solver_moves = []
         self.solver_move_index = 0
+        self.solver_board_state = None
 
         self.running = True
 
     def start(self):
-        """Starts the game loop"""
+        """Runs the game loop"""
         while self.running:
             self._handle_events()
             self.ui.update()
@@ -57,10 +59,10 @@ class GameLoop:
             #     if event.button == 1:
             #         self.board.click(event.pos)
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE:
+                if event.key == pygame.K_RETURN:
+                    self._handle_solver()
+                elif event.key == pygame.K_SPACE:
                     self.board.scramble()
-                    self.solver_moves = []
-                    self.solver_move_index = 0
                 elif event.key == pygame.K_UP:
                     self.board.move(self.board.UP)
                 elif event.key == pygame.K_LEFT:
@@ -69,15 +71,31 @@ class GameLoop:
                     self.board.move(self.board.RIGHT)
                 elif event.key == pygame.K_DOWN:
                     self.board.move(self.board.DOWN)
-                elif event.key == pygame.K_RETURN:
-                    if len(self.solver_moves) == 0:
-                        self.solver_moves = self.solver.run()
-                        self.solver_move_index = 0
-                    else:
-                        self.board.move(
-                            self.solver_moves[self.solver_move_index])
-                        if self.board.check_win():
-                            self.solver_move_index = 0
-                            self.solver_moves = []
-                        else:
-                            self.solver_move_index += 1
+
+    def _handle_solver(self):
+        """Handles functionality of solver button"""
+        # Reset solver if board state has changed since last move
+        if self.board.numbers_grid != self.solver_board_state:
+            self._reset_solver()
+
+        # Run solver if move list is empty
+        if len(self.solver_moves) == 0:
+            self.solver_moves = self.solver.run()
+            self.solver_move_index = 0
+            self.solver_board_state = deepcopy(
+                self.board.numbers_grid)
+
+        # Advance solver if there are moves to be made
+        else:
+            self.board.move(
+                self.solver_moves[self.solver_move_index])
+            self.solver_board_state = deepcopy(
+                self.board.numbers_grid)
+            self.solver_move_index += 1
+            if self.board.check_win():
+                self._reset_solver()
+
+    def _reset_solver(self):
+        """Resets solver values"""
+        self.solver_moves = []
+        self.solver_move_index = 0
