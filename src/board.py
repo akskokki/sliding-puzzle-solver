@@ -105,3 +105,6 @@ class Board:
             for x in range(self.size):
                 if self.numbers_grid[y][x] == 0:
                     self.blank_coords = (y, x)
+
+    def reset_board(self):
+        self.set_numbers('[[1,2,3,4], [5,6,7,8], [9,10,11,12], [13,14,15,0]]')

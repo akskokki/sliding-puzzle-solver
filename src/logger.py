@@ -56,3 +56,9 @@ class Logger:
         """
         self.bound = new_bound
         return self._update()
+
+    def get_elapsed_time(self):
+        elapsed_time = time() - self.start_time
+        print(elapsed_time)
+        print('')
+        return elapsed_time
