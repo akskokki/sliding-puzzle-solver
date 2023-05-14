@@ -17,7 +17,7 @@ poetry run invoke start
 ## Usage
 Arrow keys: Manual board control  
 Space: Weak scramble (100 random moves, scrambling past ~200 moves runs the risk of being too complex to solve)  
-Enter: Start solve, and after solution is found progress solve with each press
+Enter: Start solve, and after solution is found progress solve with each press  
 R: Enter custom board state as terminal input (String form of 2D List, only intended for copy-pasting previously solved boards from the terminal)
 
 ## Testing

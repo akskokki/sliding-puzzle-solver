@@ -11,7 +11,7 @@ from logger import Logger
 
 def main():
     size = 4
-    solver_timeout = 20
+    solver_timeout = 120
 
     screen = pygame.display.set_mode([size*100, size*100])
     pygame.display.set_caption('15 puzzle')
