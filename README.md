@@ -1,7 +1,11 @@
 # sliding-puzzle-solver
+
+![](https://github.com/akskokki/sliding-puzzle-solver/docs/images/demo.gif)
+
 Data structures and algorithms student project
 
 ## Documentation
+
 [User instructions](https://github.com/akskokki/sliding-puzzle-solver/blob/main/docs/instructions.md)
 
 [Project specification](https://github.com/akskokki/sliding-puzzle-solver/blob/main/docs/specification.md)
@@ -11,6 +15,7 @@ Data structures and algorithms student project
 [Testing document](https://github.com/akskokki/sliding-puzzle-solver/blob/main/docs/testing.md)
 
 #### Weekly progress reports
+
 [Week 1](https://github.com/akskokki/sliding-puzzle-solver/blob/main/docs/week1.md)  
 [Week 2](https://github.com/akskokki/sliding-puzzle-solver/blob/main/docs/week2.md)  
 [Week 3](https://github.com/akskokki/sliding-puzzle-solver/blob/main/docs/week3.md)  
