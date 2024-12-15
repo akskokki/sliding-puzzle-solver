@@ -1,6 +1,6 @@
 # sliding-puzzle-solver
 
-![](https://github.com/akskokki/sliding-puzzle-solver/docs/images/demo.gif)
+![](https://github.com/akskokki/blob/sliding-puzzle-solver/docs/images/demo.gif)
 
 Data structures and algorithms student project
 
